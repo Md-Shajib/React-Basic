@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useEffect, useState } from 'react';
 
 function App() {
   var textStyle = {
@@ -50,9 +51,12 @@ function App() {
           Products.map(productObj => <ProductsCard product={productObj}></ProductsCard>)
         }
       </header>
+      <Counter></Counter>
+      <Users></Users>
     </div>
   );
 }
+
 
 
 function Person(props){
@@ -90,4 +94,41 @@ function ProductsCard(props){
     </div>
   );
 }
+
+function Counter(){
+  const [count, setCount] = useState(0)
+  const incrementer = () => {setCount(count + 1)};
+  // const decrementer = () => {
+  //   if(count > 0){
+  //     const Newcount = count - 1;
+  //     setCount(Newcount);
+  //   }
+  // }
+  return(
+    <div>
+      <h2>Counter: {count}</h2>
+      <button onClick={incrementer}>Increase</button>
+      <button onClick={()=>{if(count>0) setCount(count-1)}}>Decrease</button>
+    </div>
+  );
+}
+
+function Users(){
+  const [users, setUsers] = useState([]);
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data));
+  }, [])
+
+  return(
+    <div>
+      <h3>Dynamic Users: {users.length} </h3>
+      {
+        users.map(user => <li>{user.name}</li>)
+      }
+    </div>
+  )
+}
+
 export default App;
