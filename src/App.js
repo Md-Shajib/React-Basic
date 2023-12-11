@@ -16,8 +16,18 @@ function App() {
     name: "Md Roni",
     age: 23
   }
-  const nayoks = [{name: 'Saruk Khan', title: 'Star'}, {name:'Amir Khan', title: 'star'}, {name:'Salman Khan', title:'star'}]
-  const Products = [{name: 'Photoshop', price: '$200.00'}, {name:'Illustrator', price: '$150.99'}, {name:'Adobe Reader', price:'$10.00'}]
+  const nayoks = [
+    {name: 'Saruk Khan', title: 'Star'},
+    {name:'Amir Khan', title: 'star'},
+    {name:'Salman Khan', title:'star'},
+    {name:'Shuvo'}
+  ]
+  const Products = [
+    {name: 'Photoshop', price: '$200.00'},
+    {name:'Illustrator', price: '$150.99'},
+    {name:'Adobe Reader', price:'$10.00'},
+    {name:'Visual Studio', price:'$1000.00'},
+  ]
   return (
     <div className="App">
       <header className="App-header">
@@ -28,7 +38,17 @@ function App() {
         <Person name = {nayoks[0].name} title = {nayoks[0].title}></Person>
         <ProductsCard product = {Products[0]}></ProductsCard>
         <ProductsCard product = {Products[1]}></ProductsCard>
-        <ProductsCard product = {Products[2]}></ProductsCard>
+
+        <p>Dynamic - Using MAP</p>
+        <ul>
+          {
+            nayoks.map(nayok => <li>{nayok.name}</li>)
+          }
+        </ul>
+
+        {
+          Products.map(productObj => <ProductsCard product={productObj}></ProductsCard>)
+        }
       </header>
     </div>
   );
