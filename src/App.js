@@ -17,6 +17,7 @@ function App() {
     age: 23
   }
   const nayoks = [{name: 'Saruk Khan', title: 'Star'}, {name:'Amir Khan', title: 'star'}, {name:'Salman Khan', title:'star'}]
+  const Products = [{name: 'Photoshop', price: '$200.00'}, {name:'Illustrator', price: '$150.99'}, {name:'Adobe Reader', price:'$10.00'}]
   return (
     <div className="App">
       <header className="App-header">
@@ -25,6 +26,9 @@ function App() {
         <h3 style={textStyle}>Name: {person2.name + ", Age: " + person2.age}</h3>
         <Person name="Shakib Khan" title="Nayok"></Person>
         <Person name = {nayoks[0].name} title = {nayoks[0].title}></Person>
+        <ProductsCard product = {Products[0]}></ProductsCard>
+        <ProductsCard product = {Products[1]}></ProductsCard>
+        <ProductsCard product = {Products[2]}></ProductsCard>
       </header>
     </div>
   );
@@ -44,6 +48,25 @@ function Person(props){
         <h2>Name: {props.name}</h2>
         <h4>Title: {props.title}</h4>
       </div>
+    </div>
+  );
+}
+
+function ProductsCard(props){
+  const productStyle = {
+    color: '#000000',
+    border: '1px solid gray',
+    borderRadius: '5px',
+    backgroundColor: 'lightgray',
+    height: '200px',
+    width: '200px',
+    float: 'left',
+  }
+  const {name, price} = props.product;
+  return(
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
     </div>
   );
 }
